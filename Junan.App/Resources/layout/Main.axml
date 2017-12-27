@@ -3,5 +3,19 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    android:minWidth="25px"
+    android:minHeight="25px"
+    android:background="@android:color/white">
+  <TextView
+      android:background="@android:color/holo_red_light"
+      android:id="@+id/txtUserName"
+      android:layout_height="200px"
+      android:layout_width="600px"></TextView>
+    <Button
+        android:text="登陆"
+        android:layout_marginLeft="200px"
+        android:layout_width="300px"
+        android:layout_height="100px"
+        android:id="@+id/btnLogin"
+        android:background="@android:color/holo_green_dark" />
 </LinearLayout>
