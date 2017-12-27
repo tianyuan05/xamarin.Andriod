@@ -2,32 +2,42 @@
 using Android.Widget;
 using Android.OS;
 using Android.Content;
+using System.Collections.Generic;
 
 namespace Junan.App
 {//Junan.App
     [Activity(Label = "Junan.App", MainLauncher = true)]
     public class MainActivity : Activity
     {
-        TextView textView ;
+        static readonly List<string> phoneNumbers = new List<string> { "15563718500", "15589776022" };
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
+            ActionBar.NavigationMode = ActionBarNavigationMode.Tabs;
+            //ActionBar.set
             // Set our view from the "main" layout resource
-            SetContentView(Resource.Layout.Main);
+            var tabchecked = ActionBar.NewTab();
+            tabchecked.SetText("检查");
+            tabchecked.TabSelected += (sender, args) =>
+            {
+                // Do something when tab is selected
+                SetContentView(Resource.Layout.Main);
+            };
+            var tabRecord = ActionBar.NewTab();
+            tabRecord.TabSelected += (sender, args) =>
+            {
+                SetContentView(Resource.Layout.Index);
+            };
+            tabRecord.SetText("检查");
 
-            Button btnLogin = FindViewById<Button>(Resource.Id.btnLogin);
-            btnLogin.Click += OnLogin;
-            textView = FindViewById<TextView>(Resource.Id.txtUserName);
+            ActionBar.AddTab(tabchecked);
+            ActionBar.AddTab(tabRecord);
+
 
         }
 
-        private void OnLogin(object sender, System.EventArgs e)
-        {
-            var intent = new Intent(this, typeof(LoginActivity));
-            //intent.PutStringArrayListExtra("LoginActivity", phoneNumbers);
-            StartActivity(intent);
-        }
     }
 }
 
